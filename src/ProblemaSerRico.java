@@ -33,8 +33,5 @@ public class ProblemaSerRico {
 
             System.out.println(iLitrosTotales);
         }
-
-
-
     }
 }
