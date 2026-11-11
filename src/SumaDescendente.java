@@ -23,7 +23,7 @@ public class SumaDescendente {
             iLongitud = String.valueOf(iNum).length(); // Guardamos la longitud de iNum
             iCounter = iLongitud;
 
-            // Convertimos el valor de iNum a un String, para poder hacer charAt que necesita un String
+            // Convertimos el valor de iNum a un String, porque para poder hacer charAt se necesita un String
             String strNum = String.valueOf(iNum);
 
             for (int i = 0; i < iCounter; i++) {
@@ -34,7 +34,7 @@ public class SumaDescendente {
 
                     iNum = iNum - (iDigitoIzq * iRestarNum);
 
-                    strNum = String.valueOf(iNum); // Error actual: Aplastamos el valor de strNum
+                    // strNum = String.valueOf(iNum); Error actual: Aplastamos el valor de strNum
                     // mientras miramos el digito de la izq usando ese mismo numero. Tengo que arreglarlo
 
                     lResultado += iNum;
