@@ -1,51 +1,43 @@
 import java.util.Scanner;
 
 public class SumaDescendente {
+    public static int sumaDescendente(int iNum) {
+        // Convertimos el valor de iNum a un String, porque para poder hacer charAt se necesita un String
+        String strNum = String.valueOf(iNum);
+        int iSuma = 0;
+        int iLongitud; // Guarda la longitud de iNum
+
+        char[] charArray = strNum.toCharArray(); // Convertimos el String a un array de caracteres para poder recorrerlo
+        iLongitud = charArray.length; // Guardamos la longitud de iNum
+
+        int puntero = 0;
+        String strNumAux = null;
+        for (int i = 0; i < charArray.length; i++) {
+            strNumAux = "";
+
+            for (int j = puntero; j < charArray.length; j++) {
+                strNumAux = strNumAux + charArray[j];
+            }
+
+            iSuma += Integer.parseInt(strNumAux);
+            puntero++;
+        }
+
+        return iSuma;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int iNum; // Numero introducido, y el que vamos modificando
-        int iCounter; // Contador para el for
-        long lResultado = 0;
-        int iDigitoIzq; // Almacena el digito más a la izquierda
-        int iRestarNum; // Valor que hace iNum más pequeño
-        int iLongitud; // Guarda la longitud de iNum
 
         do {
             System.out.println("Dime un numero y te dire su suma descendente (0 para salir):");
             iNum = sc.nextInt();
 
-            // Reseteamos los parámetros si llevamos más de un cálculo
-            lResultado = 0;
-            iDigitoIzq = 0;
-            iRestarNum = 0;
-            iLongitud = 0;
-
-            iLongitud = String.valueOf(iNum).length(); // Guardamos la longitud de iNum
-            iCounter = iLongitud;
-
-            // Convertimos el valor de iNum a un String, porque para poder hacer charAt se necesita un String
-            String strNum = String.valueOf(iNum);
-
-            for (int i = 0; i < iCounter; i++) {
-                iDigitoIzq = Character.getNumericValue(strNum.charAt(i)); // Recorremos el digito
-
-                if (iDigitoIzq != 0){
-                    iRestarNum = (int) Math.pow(10, iLongitud - 1);
-
-                    iNum = iNum - (iDigitoIzq * iRestarNum);
-
-                    // strNum = String.valueOf(iNum); Error actual: Aplastamos el valor de strNum
-                    // mientras miramos el digito de la izq usando ese mismo numero. Tengo que arreglarlo
-
-                    lResultado += iNum;
-                }
-
-                iLongitud =- 1;
-                i++;
+            if (iNum != 0) {
+                System.out.printf("El resultado de la suma descendente es %s %n%n", sumaDescendente(iNum));
             }
 
-            System.out.printf("El resultado de la suma descendente es %s %n", lResultado);
-        }
-        while (iNum != 0);
+        } while (iNum != 0);
     }
 }
