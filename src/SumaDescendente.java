@@ -1,42 +1,43 @@
 import java.util.Scanner;
 
 public class SumaDescendente {
-    public static void main(String[] args) {
-        Scanner num1 = new Scanner(System.in);
+    public static int sumaDescendente(int iNum) {
+        // Convertimos el valor de iNum a un String, porque para poder hacer charAt se necesita un String
+        String strNum = String.valueOf(iNum);
+        int iSuma = 0;
+        int iLongitud; // Guarda la longitud de iNum
 
-        while (true) {
-            System.out.println("Dime un numero y te dire su suma descendente (0 para salir):");
-            int intro = num1.nextInt(); //numero introducido
+        char[] charArray = strNum.toCharArray(); // Convertimos el String a un array de caracteres para poder recorrerlo
+        iLongitud = charArray.length; // Guardamos la longitud de iNum
 
-            if (intro == 0) {//condicion de parada
-                break;
+        int puntero = 0;
+        String strNumAux = null;
+        for (int i = 0; i < charArray.length; i++) {
+            strNumAux = "";
+
+            for (int j = puntero; j < charArray.length; j++) {
+                strNumAux = strNumAux + charArray[j];
             }
 
-            long resul = 0;//Valor del resultado final
-            int descen = intro; //auxiliar que va sumando los valores al resultado final
-            int tam = String.valueOf(intro).length(); //longitud del numero introducido
-            String descennum = String.valueOf(intro); //auxiliar string
-            int desceniz = 0; //auxiliar para almacenar el dígito de más a la izquierda
-            int descenres = 0;//valor que se le resta a la variable descen
-
-            while (tam > 0) {
-                resul = resul + descen; //añadir el valor al resultado final
-
-                desceniz = Character.getNumericValue(descennum.charAt(0));//ponemos el nuevo digito de la izquierda
-
-                descenres = (int) Math.pow(10, tam - 1);//ajuste de la variable
-
-                descen = descen - (desceniz * descenres);//se resta el digito inicial
-
-                descennum = String.valueOf(descen);//se recorta el string
-
-                tam--;//ajuste del tamaño
-            }
-
-            System.out.println("El resultado de la suma descendente es " + resul);
-            System.out.println(); //Línea de separacion
+            iSuma += Integer.parseInt(strNumAux);
+            puntero++;
         }
 
-        num1.close();
+        return iSuma;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int iNum; // Numero introducido, y el que vamos modificando
+
+        do {
+            System.out.println("Dime un numero y te dire su suma descendente (0 para salir):");
+            iNum = sc.nextInt();
+
+            if (iNum != 0) {
+                System.out.printf("El resultado de la suma descendente es %s %n%n", sumaDescendente(iNum));
+            }
+
+        } while (iNum != 0);
     }
 }
