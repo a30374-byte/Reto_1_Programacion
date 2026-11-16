@@ -31,5 +31,6 @@ public class ChiclesRegalo {
                 System.out.println(iChiclesComidos + " " + iEnvoltorios);
             }
         }
+        System.out.print("Fin del programa");
     }
 }
